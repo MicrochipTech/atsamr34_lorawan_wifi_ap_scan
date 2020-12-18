@@ -7,70 +7,85 @@
 </a>
 </p>
 
-**Based on LoRaWAN Mote Application generated from ASFv3, this sample code demonstrates how to transmit nearby Access Point data over the LoRaWAN network.**
+## ⚠ Disclaimer
 
-For more information on Microchip ATSAMR34 LoRa SiP and ATWINC1500 802.11b/g/n Network Controller devices, visit Microchip webpages: </br>
-https://www.microchip.com/design-centers/wireless-connectivity/low-power-wide-area-networks/lora-technology/sam-r34-r35
-https://www.microchip.com/wwwproducts/en/ATWINC1500
+<p><span style="color:red"><b>
+Subject to your compliance with these terms, you may use Microchip software and any derivatives exclusively with Microchip products. It is your responsibility to comply with third party license terms applicable to your use of third party software (including open source software) that may accompany Microchip software.<br>
+THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.<br>
+IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
+</span></p></b>
+
+> Interact with your peers about this software in [LoRa Forum](https://www.microchip.com/forums/f512.aspx).
+
+## Abstract
+
+**Based on LoRaWAN Mote Application generated from ASFv3, this sample code demonstrates how to transmit nearby Access Point data over the LoRaWAN network.**
 
 ![](Doc/SETUP.png)
 
-## Get a Microchip ATSAMR34 Xplained Pro evaluation kit
+## Sample Applications
 
-The ATSAMR34 Xplained Pro evaluation kit is a hardware platform used to evaluate the ATSAMR34 Low Power LoRa® Sub-GHz SiP. It is supported by Atmel Studio 7.0 IDE and a collection of sample codes are available from Advanced Software Framework (ASFv3) since the 3.44.0 release.
-The Xplained Pro MCU series evaluation kit includes an on-board Embedded Debugger (EDBG), and no external tools are necessary to program or debug the ATSAMR34.
-The kit offers a set of features that enable the user to get started with the ATSAMR34 Low Power LoRa® Sub-GHz SiP peripherals right away, and to understand how to integrate the device in your own design.
-The ATSAMR34 Xplained Pro kit contains the following items:
-- One ATSAMR34 Xplained Pro </br>
-- One external antenna </br>
+[Clone/Download](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository) the current repo to get the software.
 
-![](Doc/ATSAMR34Xpro.png)
+## A la carte
 
-https://www.microchip.com/DevelopmentTools/ProductDetails/dm320111
+1. [Material required](#step1)
+2. [Software](#step2)
+3. [Hardware setup](#step3)
+4. [LoRaWAN Mote Application + WiFi Sniffing](#step4)
+5. [Provisioning the LoRaWAN activation parameters](#step5)
+6. [Upgrading WINC1500 with 19.6.1 Firmware](#step6)
+7. [Configuring the WiFi AP Scan](#step7)
+8. [WiFi Usage for Scanning](#step8)
+6. [Run the demo](#step9)
 
-## Get a Microchip ATWINC1500 Xplained Pro evaluation kit
+## Material required <a name="step1"></a>
 
-The ATWINC1500-XPRO is an extension board to the Xplained Pro evaluation platform. The ATWINC1500-XPRO extension board allows you to evaluate the ATWINC1500 low cost, low power 802.11 b/g/n Wi-Fi network controller module. Supported by the Atmel Studio integrated development platform, the kit provides easy access to the features of the ATWINC1500 and explains how to integrate the device in a custom design.
-
+Purchase the <a href="https://www.microchip.com/DevelopmentTools/ProductDetails/ATWINC1500-XPRO" target="_blank">ATWINC1500 Xplained Pro board</a>
+</br>
 ![](Doc/ATWINC1500Xpro.png)
+</br>
 
-https://www.microchip.com/DevelopmentTools/ProductDetails/ATWINC1500-XPRO
+> For this tutorial, the ATWINC1500 module is loaded with Firmware version 19.6.1.
 
-For this tutorial, the ATWINC1500 module is loaded with Firmware version 19.6.1.
+Purchase the <a href="https://www.microchip.com/Developmenttools/ProductDetails/DM320111" target="_blank">SAM R34 Xplained Pro Evaluation Kit</a>
+</br>
+![](Doc/ATSAMR34Xpro.png)
+</br>
 
-## Software
+OR
 
-- Download and install Atmel Studio 7.0 IDE. </br>
-https://www.microchip.com/mplab/avr-support/atmel-studio-7
+Purchase the <a href="https://www.microchip.com/DevelopmentTools/ProductDetails/PartNO/EV23M25A" target="_blank">WLR089U0 Xplained Pro Evaluation Kit</a>
+</br>
+![](Doc/WLR089U0Xpro.png)
+</br>
 
-- Open Atmel Studio 7.0 IDE. </br>
-- Then, you need Advanced Software Framework (ASFv3) v3.45.0 release or upper release. </br>
-Install ASFv3 as an extension to Atmel Studio from the menu: Tools -> Extensions and Updates …
-- Once the installation is complete, you must restart Atmel Studio. </br>
-- Download and install a serial terminal program like Tera Term. </br>
-https://osdn.net/projects/ttssh2/releases/
+Purchase a LoRa(r) Gateway from <a href="https://www.thethingsindustries.com/technology/hardware#gateway" target="_blank">The Things Industries</a>
+</br>
+![](Doc/TTI_Hardware.png)
+</br>
 
-Note: ASFv3 is an MCU software library providing a large collection of embedded software for AVR® and SAM flash MCUs and Wireless devices. ASFv3 is configured by the ASF Wizard in Atmel Studio 7.0 (installed as an extension to Studio). ASFv3 is also available as a standalone (.zip) with the same content as Studio extension (https://www.microchip.com/mplab/avr-support/advanced-software-framework).
+## Software <a name="step2"></a>
 
-Important:
-Until the next Atmel Studio IDE release, you have to manually install the Device Part Pack for developing with SAMR34/R35 on Atmel Studio 7.0 IDE.
-(all products released in between IDE releases of Atmel Studio should be manually added by user to develop applications).
-- Go to Tools -> Device Pack Manager </br>
-- Check for Updates </br>
-- Search for SAMR34 and click install </br>
-- Repeat the same for SAMR35 </br>
-- Restart Atmel Studio 7.0 IDE </br>
+- Download and install [Microchip Studio 7.0 IDE](https://www.microchip.com/mplab/microchip-studio).
+- Open Microchip Studio 7.0 IDE.
+- From **Tools - > Extensions and updates**, install Advanced Software Framework (ASFv3) v3.49.1 release or upper release.
+- Restart Microchip Studio
 
-## Hardware Setup
+- Download and install a serial terminal program like [Tera Term](https://osdn.net/projects/ttssh2/releases/).
 
-To demonstrate WiFi Sniffing over LoraWAN Network by connecting SAMR34-Xpro and ATWINC1500-Xpro, the connection is pretty straightforward through the EXT1 interface.
+## Hardware setup <a name="step3"></a>
+
+To demonstrate WiFi Sniffing over LoraWAN Network by connecting SAMR34-Xpro or WLR089U0-Xpro and ATWINC1500-Xpro, the connection is pretty straightforward through the EXT1 interface.
 
 ![](Doc/Interface.png)
 
 To get more information on the WINC1500 MCU Interface, follow this link:
 http://microchipdeveloper.com/wf:atwinc1500-mcu-interfacing
 
-Note: If you have a ATSAMR34-Xpro Rev3 board (flip the board to check the revision), the EXT1_PIN10 marked PA23 on silkscreen is actually net to PA15.
+If you are using a WLR089U0 Xplained Pro board, no hardware modification is required on the board.
+
+If you have a ATSAMR34-Xpro Rev3 board (flip the board to check the revision), the EXT1_PIN10 marked PA23 on silkscreen is actually net to PA15.
 General recommandation is to double check with the schematics of the board which is available in the Chip Down Design Package: 
 https://www.microchip.com/wwwproducts/en/ATSAMR34J18
 
@@ -93,7 +108,7 @@ USB cable must be connected to the EDBG USB connectors of the ATSAMR34 kit.
 - Wait for USB driver installation and COM ports mounting. The USB ports powers the board and enables the user to communicate with the kits. </br>
 - Launch Tera Term program and configure the serial ports mounted with: 115200 bps, 8/N/1 </br>
 
-## LoRaWAN Mote Application + WiFi Sniffing
+## LoRaWAN Mote Application + WiFi Sniffing<a name="step4"></a>
 
 This project integrates the Microchip LoRaWAN Stack (MLS) Software API which provide an interface to the different software modules. </br></br>
 This application is based on LoRaWAN Mote Application generated from ASFv3 and already contains the drivers required to interface the ATWINC1500 device (PORT, EXTINT, SPI, etc...).
@@ -106,9 +121,9 @@ The application has been modified to perform the following steps on demand:
 
 It uses UART serial interface with 115200 bps 8N1 configuration and the UART is used to display the menu options. The user input is provided through keyboard.
 
-## Provisioning the LoRaWAN activation parameters
+## Provisioning the LoRaWAN activation parameters<a name="step5"></a>
 
-- In Atmel Studio 7 IDE
+- In Microchip Studio 7 IDE
 - Open this project
 - To activate your ATSAMR34 Xplained Pro board on a LoRa Network Server, you will be using the OTAA activation procedure. The OTAA method requires the following parameters to be embedded into the LoRaWAN Mote Application:
   </br>- AppEUI : Copy/Paste from your Network Server
@@ -135,7 +150,7 @@ conf_board.h file:
 	Userpage Enable this Macro otherwise make it as 0 */
 	#define EDBG_EUI_READ      1
 
-## Upgrading WINC1500 with 19.6.1 Firmware
+## Upgrading WINC1500 with 19.6.1 Firmware<a name="step6"></a>
 
 This sample application has been tested with WINC1500 Firmware v19.6.1.
 Make sure your WINC1500 is loaded with the same firmware. The host driver has to fit with the firmware running on the WINC1500.
@@ -151,7 +166,7 @@ During init., the WINC1500 application is checking the Firmware Vs Driver matchi
 	(APP)(INFO)Driver built at Feb 13 2019  09:45:42
 ```
 
-## Configuring the WiFi AP Scan
+## Configuring the WiFi AP Scan<a name="step7"></a>
 
 This application provides configurable parameters related to the WiFi scanning.
 There are two methods of scanning for active WiFi access points.
@@ -186,7 +201,7 @@ The file contains the possible configuration related to the WiFi AP Scan.
 	#define DEMO_CHANNEL_TO_SCAN	M2M_WIFI_CH_ALL
 ```
 
-## WiFi Usage for Scanning
+## WiFi Usage for Scanning<a name="step8"></a>
 
 The drivers of WINC1500 device are based on events.
 The m2m_wifi_handle_events() function has to be called periodicaly in the main loop in order to receive the events that are to be handled by the callback functions implemented by the application. 
@@ -325,11 +340,11 @@ The scan results is stored as below data structure for each scan result:
 	uint8 au8SSID[M2M_MAX_SSID_LEN]; /*!< AP ssid. */
 ```
 
-## Tutorial
+## Run the demo<a name="step9"></a>
 
-- Start Atmel Studio 7 IDE
+- Start Microchip Studio 7 IDE
 - Open this project
-- From the Atmel Studio menu, go to: Build -> Build Solution
+- From the Microchip Studio menu, go to: Build -> Build Solution
 - Flash the firmware on the ATSAMR34 Xplained Pro board
 - Open a Tera Term session with 115200 bps 8N1 configuration.
 - Reset the board
