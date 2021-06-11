@@ -1,4 +1,6 @@
 # ATSAMR34_LORAWAN_WIFI_AP_SCAN
+<img src="Doc/IoT-Made-Easy-Logo.png" width=100>
+
 > “Wireless Made Easy!" - Adding WiFi Sniffing to an existing LoRaWAN Application
 
 <p>
