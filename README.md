@@ -90,13 +90,13 @@ http://microchipdeveloper.com/wf:atwinc1500-mcu-interfacing
 Depending the WINC1500 Xplained Pro board version used, the **UART_TXD** line from the WINC1500 Xpro board may be present on the pin #13 of the EXT connector. By default, the WINC1500 Firmware is pushing debug log over the **UART_TXD** pin for debug analysis. The **UART_TXD** will influence the application running on SAMR34/WLR089 device and may cause unexpected software reset.
 
 <p align="center">
-<img src="DOC/winc1500xpro_revisions.png" width=320>
+<img src="Doc/winc1500xpro_revisions.png" width=320>
 </p>
 
 A closer look on the WINC1500 Xplained Pro board schematics informs on the R118 shunt. For some versions of the Xpro board the R118 shunt is populated. This is the case for board Revision 12 from 2016.
 
 <p align="center">
-<img src="DOC/ATWINC1500Xpro_sch.png" width=480>
+<img src="Doc/ATWINC1500Xpro_sch.png" width=480>
 </p>
 
 To connect ATMSAR34-Xpro or WLR089U0-Xpro to WINC1500-Xpro, make sure to not connect together the EXT_Pin13 if you are using a WINC1500-Xpro board with R118 populated.
@@ -104,14 +104,14 @@ To connect ATMSAR34-Xpro or WLR089U0-Xpro to WINC1500-Xpro, make sure to not con
 Either, you connect the boards together through wiring and connect only the necessary signals by referring the table above.
 
 <p align="center">
-<img src="DOC/wiring_connection.png" width=480>
+<img src="Doc/wiring_connection.png" width=480>
 </p>
 
 Or, you want to connect the boards directly but make sure to remove R118 0 Ohm from the WINC1500-Xpro board firstly.
 
 <p align="center">
-<img src="DOC/direct_connection.png" width=480>
-<img src="DOC/ATWINC1500Xpro_pcb.png" width=480>
+<img src="Doc/direct_connection.png" width=480>
+<img src="Doc/ATWINC1500Xpro_pcb.png" width=480>
 </p>
 
 ### Using WLR089 Xplained Pro
