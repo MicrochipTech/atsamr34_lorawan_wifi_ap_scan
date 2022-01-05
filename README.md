@@ -112,6 +112,7 @@ Or, you want to connect the boards directly but make sure to remove R118 0 Ohm f
 <p align="center">
 <img src="Doc/direct_connection.png" width=480>
 <img src="Doc/ATWINC1500Xpro_pcb.png" width=480>
+<img src="Doc/winc1500xpro_modification.png" width=480>
 </p>
 
 ### Using WLR089 Xplained Pro
