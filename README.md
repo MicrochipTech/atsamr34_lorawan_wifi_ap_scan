@@ -85,7 +85,40 @@ To demonstrate WiFi Sniffing over LoraWAN Network by connecting SAMR34-Xpro or W
 To get more information on the WINC1500 MCU Interface, follow this link:
 http://microchipdeveloper.com/wf:atwinc1500-mcu-interfacing
 
+### Connection
+
+Depending the WINC1500 Xplained Pro board version used, the **UART_TXD** line from the WINC1500 Xpro board may be present on the pin #13 of the EXT connector. By default, the WINC1500 Firmware is pushing debug log over the **UART_TXD** pin for debug analysis. The **UART_TXD** will influence the application running on SAMR34/WLR089 device and may cause unexpected software reset.
+
+<p align="center">
+<img src="DOC/winc1500xpro_revisions.png" width=320>
+</p>
+
+A closer look on the WINC1500 Xplained Pro board schematics informs on the R118 shunt. For some versions of the Xpro board the R118 shunt is populated. This is the case for board Revision 12 from 2016.
+
+<p align="center">
+<img src="DOC/ATWINC1500Xpro_sch.png" width=480>
+</p>
+
+To connect ATMSAR34-Xpro or WLR089U0-Xpro to WINC1500-Xpro, make sure to not connect together the EXT_Pin13 if you are using a WINC1500-Xpro board with R118 populated.
+
+Either, you connect the boards together through wiring and connect only the necessary signals by referring the table above.
+
+<p align="center">
+<img src="DOC/wiring_connection.png" width=480>
+</p>
+
+Or, you want to connect the boards directly but make sure to remove R118 0 Ohm from the WINC1500-Xpro board firstly.
+
+<p align="center">
+<img src="DOC/direct_connection.png" width=480>
+<img src="DOC/ATWINC1500Xpro_pcb.png" width=480>
+</p>
+
+### Using WLR089 Xplained Pro
+
 If you are using a WLR089U0 Xplained Pro board, no hardware modification is required on the board.
+
+### Using ATSAMR34 Xplained Pro
 
 If you have a ATSAMR34-Xpro Rev3 board (flip the board to check the revision), the EXT1_PIN10 marked PA23 on silkscreen is actually net to PA15.
 General recommandation is to double check with the schematics of the board which is available in the Chip Down Design Package: 
@@ -166,6 +199,18 @@ During init., the WINC1500 application is checking the Firmware Vs Driver matchi
 	(APP)(INFO)Firmware Min driver ver : 19.3.0
 	(APP)(INFO)Driver ver: 19.6.1
 	(APP)(INFO)Driver built at Feb 13 2019  09:45:42
+```
+
+This sample application has been also tested with WINC1500 Firmware v19.7.3 and Driver v19.6.1.
+
+```
+(APP)(INFO)Chip ID 1503a0
+(APP)(INFO)DriverVerInfo: 0x13301361
+(APP)(INFO)Firmware ver   : 19.7.3 Svnrev 19057
+(APP)(INFO)Firmware Build Oct 30 2020 Time 03:59:06
+(APP)(INFO)Firmware Min driver ver : 19.3.0
+(APP)(INFO)Driver ver: 19.6.1
+(APP)(INFO)Driver built at Jan  6 2021  19:52:13
 ```
 
 ## Configuring the WiFi AP Scan<a name="step7"></a>
